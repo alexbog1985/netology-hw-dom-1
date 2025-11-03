@@ -1,11 +1,11 @@
-// TODO: write code here
+import TileGame from "./tile-game/TileGame";
 
-// comment this to pass build
-const unusedVariable = "variable";
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOMContentLoaded");
 
-// for demonstration purpose only
-export default function demo(value) {
-  return `Demo: ${value}`;
-}
+  const tileGame = new TileGame(document.querySelector(".tile-game"));
 
-console.log("app.js included");
+  setInterval(() => {
+    tileGame.addGoblin();
+  }, 1000);
+});
