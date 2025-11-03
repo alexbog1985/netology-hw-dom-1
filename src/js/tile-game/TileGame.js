@@ -4,18 +4,20 @@ export default class TileGame {
   }
 
   clearTiles() {
-    const tiles = this.element.querySelectorAll('.tile');
+    const tiles = this.element.querySelectorAll(".tile");
     tiles.forEach((tile) => {
-      tile.classList.remove('tile-active');
+      tile.classList.remove("tile-active");
     });
   }
 
   addGoblin() {
-    const tiles = Array.from(this.element.querySelectorAll('.tile'));
-    const inactiveTiles = tiles.filter((tile) => !tile.classList.contains('tile-active'));
+    const tiles = Array.from(this.element.querySelectorAll(".tile"));
+    const inactiveTiles = tiles.filter(
+      (tile) => !tile.classList.contains("tile-active"),
+    );
     const randomIndex = Math.floor(Math.random() * inactiveTiles.length);
 
     this.clearTiles();
-    inactiveTiles[randomIndex].classList.add('tile-active');
-  };
+    inactiveTiles[randomIndex].classList.add("tile-active");
+  }
 }

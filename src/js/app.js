@@ -1,11 +1,11 @@
-import TileGame from './tile-game/TileGame';
+import TileGame from "./tile-game/TileGame";
 
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOMContentLoaded');
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOMContentLoaded");
 
-  const tileGame = new TileGame(document.querySelector('.tile-game'));
+  const tileGame = new TileGame(document.querySelector(".tile-game"));
 
   setInterval(() => {
-      tileGame.addGoblin();
-  }, 1000)
+    tileGame.addGoblin();
+  }, 1000);
 });
