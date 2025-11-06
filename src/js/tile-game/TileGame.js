@@ -24,11 +24,18 @@ export default class TileGame {
       (tile) => !tile.classList.contains("tile-active"),
     );
 
-    // TODO: … необходимо добавить проверку случая,
-    //  когда новый сгенерированный индекс не должен быть равен текущему индексу;
-    //  если индексы равны - выполнить генерацию нового индекса;
-    //  все это лучше сделать при помощи цикла do-while
-    const randomIndex = Math.floor(Math.random() * inactiveTiles.length);
+    const currentActiveTile = tiles.find((tile) =>
+      tile.classList.contains("tile-active"),
+    );
+    const currentIndex = currentActiveTile
+      ? inactiveTiles.indexOf(currentActiveTile)
+      : -1;
+
+    let randomIndex;
+
+    do {
+      randomIndex = Math.floor(Math.random() * inactiveTiles.length);
+    } while (randomIndex === currentIndex);
 
     this.clearTiles();
     inactiveTiles[randomIndex].classList.add("tile-active");
@@ -37,12 +44,14 @@ export default class TileGame {
   startGame() {
     this.addTile();
     this.goblinInterval = setInterval(() => {
-    this.addGoblin();
+      this.addGoblin();
     }, 1000);
   }
 
   stopGame() {
-    clearInterval(this.goblinInterval);
-    this.goblinInterval = null;
+    if (this.goblinInterval) {
+      clearInterval(this.goblinInterval);
+      this.goblinInterval = null;
+    }
   }
 }
