@@ -27,15 +27,17 @@ export default class TileGame {
     const currentActiveTile = tiles.find((tile) =>
       tile.classList.contains("tile-active"),
     );
-    const currentIndex = currentActiveTile
+    const currentIndexInAllTiles = currentActiveTile
       ? inactiveTiles.indexOf(currentActiveTile)
       : -1;
 
-    let randomIndex;
+    let randomIndex, newIndexInAllTiles, newActiveTile
 
     do {
       randomIndex = Math.floor(Math.random() * inactiveTiles.length);
-    } while (randomIndex === currentIndex);
+      newActiveTile = inactiveTiles[randomIndex];
+      newIndexInAllTiles = tiles.indexOf(newActiveTile);
+    } while (newIndexInAllTiles === currentIndexInAllTiles);
 
     this.clearTiles();
     inactiveTiles[randomIndex].classList.add("tile-active");
